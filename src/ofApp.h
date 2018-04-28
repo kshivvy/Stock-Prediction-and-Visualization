@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxLearn.h"
+#include "ofxGrafica.h"
 
 class ofApp : public ofBaseApp{
 
@@ -25,4 +26,9 @@ class ofApp : public ofBaseApp{
 		ofxLearnSVM classifier;
 		vector<vector<double> > trainingExamples;
 		vector<int> trainingLabels;
+
+		ofColor pointColor;
+		bool drawLines;
+		int circleResolution;
+		ofxGPlot plot;
 };
