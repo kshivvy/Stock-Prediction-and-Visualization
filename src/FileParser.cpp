@@ -20,8 +20,16 @@ FileParser::FileParser()
 
 	while (getline(infile, line)) {
 		lines.push_back(line);
-		Stock* stock = new Stock(line);
-		data_.push_back(stock);
+
+		try {
+			Stock* stock = new Stock(line);
+			data_.push_back(stock);
+			//stock->print();
+		}
+		catch (...) {
+			cout << "[Warning] Incorrect csv formatting, could not read stock data!" << '\n';
+			cout << "Offending formating: " << line << '\n';
+		}
 	}
 
 	cout << "Finishing reading dataset!" << '\n';
