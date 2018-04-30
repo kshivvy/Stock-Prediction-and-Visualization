@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Stock.h"
+
 #include <string>
 #include <vector>
 
@@ -10,6 +12,11 @@ class FileParser
 public:
 	FileParser();
 	~FileParser();
+
+	vector<Stock* > filterByName(string stock_name);
+
+private:
+	vector<Stock*> data_;
 
 };
 

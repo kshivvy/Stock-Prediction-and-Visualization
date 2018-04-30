@@ -46,9 +46,7 @@
     <ClCompile Include="..\..\..\addons\ofxLearn\src\ofxLearn.cpp">
       <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="Stock.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Stock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -119,9 +117,7 @@
     <ClInclude Include="..\..\..\addons\ofxLearn\src\ofxLearn.h">
       <Filter>other</Filter>
     </ClInclude>
-    <ClInclude Include="Stock.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Stock.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

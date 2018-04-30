@@ -10,24 +10,21 @@ using namespace std;
 
 FileParser::FileParser()
 {
-	//if (csv.load("../bin/data/all_stocks_5yr.csv", ",")) {
-	//	cout << "read file" << '\n';
-	//}
-	
 	ifstream infile("../bin/data/all_stocks_5yr.csv");
 	vector<string> lines;
 	string line;
 
 	getline(infile, line);
-	cout << line << '\n';
+	
+	cout << "Reading dataset..." << "\n";
 
 	while (getline(infile, line)) {
-		cout << line << '\n';
 		lines.push_back(line);
+		Stock* stock = new Stock(line);
+		data_.push_back(stock);
 	}
 
-
-
+	cout << "Finishing reading dataset!" << '\n';
 }
 
 

@@ -15,20 +15,23 @@ Stock::Stock(string csv_row)
 	vector<string> columns;
 	string column;
 
-	while (ss >> column) {
+	while (getline(ss, column, ',')) {
 		columns.push_back(column);
-		if (ss.peek() == ',') {
-			ss.ignore();
-		}
 	}
 
-	date_ = columns[0];
-	open_ = stod(columns[1]);
-	high_ = stod(columns[2]);
-	low_ = stod(columns[3]);
-	close_ = stod(columns[4]);
-	volume_ = stod(columns[5]);
-	name_ = columns[6];
+	try {
+		date_ = columns[0];
+		open_ = stod(columns[1]);
+		high_ = stod(columns[2]);
+		low_ = stod(columns[3]);
+		close_ = stod(columns[4]);
+		volume_ = stod(columns[5]);
+		name_ = columns[6];
+	}
+	catch (...) {
+		cout << "Incorrect csv formatting, could not read stock data!" << '\n';
+		return;
+	}
 }
 
 void Stock::print() {
