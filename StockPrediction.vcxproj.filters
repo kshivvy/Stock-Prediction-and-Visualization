@@ -13,6 +13,12 @@
 		<ClCompile Include="src\ofApp.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxCsv\src\ofxCsv.cpp">
+			<Filter>addons\ofxCsv\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxCsv\src\ofxCsvRow.cpp">
+			<Filter>addons\ofxCsv\src</Filter>
+		</ClCompile>
 		<ClCompile Include="..\..\..\addons\ofxGrafica\src\ofxGAxis.cpp">
 			<Filter>addons\ofxGrafica\src</Filter>
 		</ClCompile>
@@ -45,6 +51,12 @@
 		<Filter Include="addons">
 			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
 		</Filter>
+		<Filter Include="addons\ofxCsv">
+			<UniqueIdentifier>{7D309272-D72D-88B2-EE38-CF23}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxCsv\src">
+			<UniqueIdentifier>{7C4B1010-50E8-44FD-FA0B-A4E8}</UniqueIdentifier>
+		</Filter>
 		<Filter Include="addons\ofxGrafica">
 			<UniqueIdentifier>{178C872E-C185-6173-096E-B36B}</UniqueIdentifier>
 		</Filter>
@@ -61,6 +73,12 @@
 		</ClInclude>
 		<ClInclude Include="src\ofApp.h">
 			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxCsv\src\ofxCsv.h">
+			<Filter>addons\ofxCsv\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxCsv\src\ofxCsvRow.h">
+			<Filter>addons\ofxCsv\src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\addons\ofxGrafica\src\ofxGAxis.h">
 			<Filter>addons\ofxGrafica\src</Filter>

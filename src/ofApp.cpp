@@ -1,11 +1,11 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-void ofApp::setup(){
+void ofApp::setup() {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
 	// add 5000 samples to training set
-	for (int i = 0; i<5000; i++)
+	for (int i = 0; i < 5000; i++)
 	{
 		// our samples have two features: x, and y,
 		// which are bound between (0, 1).
@@ -89,7 +89,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	/**
+	
 	// draw training set
 	ofBackground(255);
 	for (int i = 0; i<trainingExamples.size(); i++) {
@@ -126,8 +126,9 @@ void ofApp::draw(){
 	ofCircle(ofGetMouseX(), ofGetMouseY(), ofMap(sin(0.1*ofGetFrameNum()), -1, 1, 5, 35));
 	ofSetColor(0);
 	ofDrawBitmapString("class " + ofToString(label), ofGetMouseX() - 25, ofGetMouseY());
-	*/
 	
+	
+	/**
 	//Graph drawing
 	plot.beginDraw();
 	plot.drawBox();
@@ -141,7 +142,7 @@ void ofApp::draw(){
 
 	plot.drawPoints(pointColor); // this is 3 times faster than drawPoints()
 	plot.drawLabels();
-	plot.endDraw();
+	plot.endDraw();*/
 }
 
 //--------------------------------------------------------------
