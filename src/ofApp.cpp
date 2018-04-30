@@ -1,9 +1,13 @@
 #include "ofApp.h"
 
+
 //--------------------------------------------------------------
 void ofApp::setup() {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
+	FileParser fp = FileParser();
+
+	/**
 	// add 5000 samples to training set
 	for (int i = 0; i < 5000; i++)
 	{
@@ -79,17 +83,18 @@ void ofApp::setup() {
 	// Activate panning and zooming
 	plot.activatePanning();
 	plot.activateZooming(1.1, OF_MOUSE_BUTTON_LEFT, OF_MOUSE_BUTTON_LEFT);
+	*/
 	
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	plot.getTitle().setText("Frame rate: " + to_string(ofGetFrameRate()));
+	//plot.getTitle().setText("Frame rate: " + to_string(ofGetFrameRate()));
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	
+	/**
 	// draw training set
 	ofBackground(255);
 	for (int i = 0; i<trainingExamples.size(); i++) {

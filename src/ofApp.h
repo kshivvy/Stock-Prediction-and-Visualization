@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxLearn.h"
 #include "ofxGrafica.h"
+#include "FileParser.h"
 
 class ofApp : public ofBaseApp{
 
