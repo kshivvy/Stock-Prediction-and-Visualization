@@ -4,6 +4,7 @@
 #include "ofxLearn.h"
 #include "ofxGrafica.h"
 #include "FileParser.h"
+#include "Plot.h"
 
 class ofApp : public ofBaseApp{
 
@@ -32,4 +33,7 @@ class ofApp : public ofBaseApp{
 		bool drawLines;
 		int circleResolution;
 		ofxGPlot plot;
+private: 
+	Plot true_plot_;
+	Plot predicted_plot_;
 };

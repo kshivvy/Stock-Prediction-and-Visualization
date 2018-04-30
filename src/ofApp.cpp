@@ -5,7 +5,10 @@
 void ofApp::setup() {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
-	FileParser fp = FileParser();
+	FileParser fp = FileParser("all_stocks_5yr.csv");
+	vector<Stock*> stocks = fp.filterStocks("AAPL", "2017-01-10", "2017-02-10");
+
+	true_plot_ = Plot(stocks, true);
 
 	/**
 	// add 5000 samples to training set
@@ -131,23 +134,9 @@ void ofApp::draw(){
 	ofCircle(ofGetMouseX(), ofGetMouseY(), ofMap(sin(0.1*ofGetFrameNum()), -1, 1, 5, 35));
 	ofSetColor(0);
 	ofDrawBitmapString("class " + ofToString(label), ofGetMouseX() - 25, ofGetMouseY());
-	
-	
-	/**
-	//Graph drawing
-	plot.beginDraw();
-	plot.drawBox();
-	plot.drawXAxis();
-	plot.drawYAxis();
-	plot.drawTitle();
+	*/
 
-	if (drawLines) {
-		plot.drawLines();
-	}
-
-	plot.drawPoints(pointColor); // this is 3 times faster than drawPoints()
-	plot.drawLabels();
-	plot.endDraw();*/
+	true_plot_.draw();
 }
 
 //--------------------------------------------------------------

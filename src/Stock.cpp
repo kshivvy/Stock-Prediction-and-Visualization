@@ -1,12 +1,4 @@
 #include "Stock.h"
-#include <string>
-#include <sstream>
-#include <vector>
-#include <iostream>
-
-using namespace std;
-
-
 
 Stock::Stock(string csv_row)
 {
@@ -26,6 +18,34 @@ Stock::Stock(string csv_row)
 	close_ = stod(columns[4]);
 	volume_ = stod(columns[5]);
 	name_ = columns[6];
+}
+
+string Stock::getDate() {
+	return date_;
+}
+
+double Stock::getOpen() {
+	return open_;
+}
+
+double Stock::getHigh() {
+	return high_;
+}
+
+double Stock::getLow() {
+	return low_;
+}
+
+double Stock::getClose() {
+	return close_;
+}
+
+double Stock::getVolume() {
+	return volume_;
+}
+
+string Stock::getName() {
+	return name_;
 }
 
 void Stock::print() {

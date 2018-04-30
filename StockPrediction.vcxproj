@@ -184,6 +184,7 @@
     <ClCompile Include="..\..\..\addons\ofxGrafica\src\ofxGPoint.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGrafica\src\ofxGTitle.cpp" />
     <ClCompile Include="..\..\..\addons\ofxLearn\src\ofxLearn.cpp" />
+    <ClCompile Include="src\Plot.cpp" />
     <ClCompile Include="src\Stock.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,7 @@
     <ClInclude Include="..\..\..\addons\ofxGrafica\src\ofxGrafica.h" />
     <ClInclude Include="..\..\..\addons\ofxGrafica\src\ofxGTitle.h" />
     <ClInclude Include="..\..\..\addons\ofxLearn\src\ofxLearn.h" />
+    <ClInclude Include="src\Plot.h" />
     <ClInclude Include="src\Stock.h" />
   </ItemGroup>
   <ItemGroup>
