@@ -5,6 +5,7 @@
 #include "ofxGrafica.h"
 #include "FileParser.h"
 #include "Plot.h"
+#include "Classifier.h"
 
 class ofApp : public ofBaseApp{
 
@@ -29,11 +30,9 @@ class ofApp : public ofBaseApp{
 		vector<vector<double> > trainingExamples;
 		vector<int> trainingLabels;
 
-		ofColor pointColor;
-		bool drawLines;
 		int circleResolution;
-		ofxGPlot plot;
 private: 
 	Plot true_plot_;
 	Plot predicted_plot_;
+	Classifier model_;
 };

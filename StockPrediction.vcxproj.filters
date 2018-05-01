@@ -48,6 +48,7 @@
     </ClCompile>
     <ClCompile Include="src\Stock.cpp" />
     <ClCompile Include="src\Plot.cpp" />
+    <ClCompile Include="src\Classifier.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -120,6 +121,7 @@
     </ClInclude>
     <ClInclude Include="src\Stock.h" />
     <ClInclude Include="src\Plot.h" />
+    <ClInclude Include="src\Classifier.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

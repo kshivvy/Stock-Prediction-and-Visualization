@@ -171,6 +171,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Classifier.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\FileParser.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="src\Stock.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Classifier.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\FileParser.h" />
     <ClInclude Include="..\..\..\addons\ofxCsv\src\ofxCsv.h" />

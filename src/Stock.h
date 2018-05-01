@@ -7,6 +7,8 @@
 
 using namespace std;
 
+enum attribute { OPEN, CLOSE, HIGH, LOW, VOLUME };
+
 class Stock
 {
 public:
