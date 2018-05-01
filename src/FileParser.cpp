@@ -4,7 +4,7 @@ using namespace std;
 
 FileParser::FileParser(string file_name)
 {	
-	cout << "Reading dataset..." << "\n";
+	cout << "Reading dataset..." << "\n" << "\n";
 
 	string file_path = "../bin/data/" + file_name;
 	ifstream infile(file_path);
@@ -26,7 +26,7 @@ FileParser::FileParser(string file_name)
 		}
 	}
 
-	cout << "Finishing reading dataset!" << '\n';
+	cout << '\n' << "Finishing reading dataset!" << '\n';
 }
 
 /** 
@@ -51,15 +51,12 @@ vector<Stock*> FileParser::getTrainingData(string stock_name, string start_date,
 			}
 		}
 	}
+
 	return result;
 }
 
 vector<Stock*> FileParser::getClassifyingData(string stock_name, string end_date, int num_days_to_predict) {
-
-}
-
-vector<Stock*> FileParser::filterByName(string stock_name) {
-
+	return vector<Stock*>();
 }
 
 FileParser::~FileParser()

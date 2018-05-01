@@ -3,12 +3,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-	ofSetLogLevel(OF_LOG_VERBOSE);
 
 	FileParser fp = FileParser("all_stocks_5yr.csv");
-	vector<Stock*> stocks = fp.filterStocks("AAPL", "2017-01-10", "2017-02-10");
+	vector<Stock*> stocks = fp.getTrainingData("AAPL", "2017-01-10", "2017-02-10");
 
-	true_plot_ = Plot(stocks, true);
+	true_plot_ = Plot(stocks, true, CLOSE);
 
 	/**
 	// add 5000 samples to training set
@@ -136,7 +135,7 @@ void ofApp::draw(){
 	ofDrawBitmapString("class " + ofToString(label), ofGetMouseX() - 25, ofGetMouseY());
 	*/
 
-	true_plot_.draw();
+	true_plot_.drawPlot();
 }
 
 //--------------------------------------------------------------
