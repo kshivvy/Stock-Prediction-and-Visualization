@@ -8,14 +8,11 @@ void ofApp::setup() {
 	vector<Stock*> stocks = fp.getTrainingData("AAPL", "2016-02-11", "2016-03-10");
 	true_plot_ = Plot(stocks, true, CLOSE);
 
-	model_ = Classifier(stocks);
-	model_.predict(50);
-	
+	//model_ = Classifier(stocks, CLOSE, 50);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	//plot.getTitle().setText("Frame rate: " + to_string(ofGetFrameRate()));
 }
 
 //--------------------------------------------------------------

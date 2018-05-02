@@ -16,12 +16,9 @@ public:
 	~Stock();
 	void print();
 	string getDate();
-	double getOpen();
-	double getHigh();
-	double getLow();
-	double getClose();
-	double getVolume();
 	string getName();
+	
+	double getAttribute(attribute stock_attribute);
 
 private:
 	string date_;

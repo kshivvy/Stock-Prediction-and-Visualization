@@ -24,28 +24,31 @@ string Stock::getDate() {
 	return date_;
 }
 
-double Stock::getOpen() {
-	return open_;
-}
-
-double Stock::getHigh() {
-	return high_;
-}
-
-double Stock::getLow() {
-	return low_;
-}
-
-double Stock::getClose() {
-	return close_;
-}
-
-double Stock::getVolume() {
-	return volume_;
-}
-
 string Stock::getName() {
 	return name_;
+}
+
+double Stock::getAttribute(attribute stock_attribute) {
+	switch (stock_attribute) {
+	case OPEN:
+		return open_;
+		break;
+	case CLOSE:
+		return close_;
+		break;
+	case HIGH:
+		return high_;
+		break;
+	case LOW:
+		return low_;
+		break;
+	case VOLUME:
+		return volume_;
+		break;
+	default:
+		return close_;
+		break;
+	}
 }
 
 void Stock::print() {
