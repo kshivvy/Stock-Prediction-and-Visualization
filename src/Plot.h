@@ -13,10 +13,9 @@ public:
 	Plot(vector<Stock*> data, bool is_predicted, attribute data_type);
 	~Plot();
 
-	ofxGPlot getPlot();
-
 	void drawPlot();
 	void generatePoints(attribute data_type);
+	void generatePoints();
 	void labelPlot(attribute data_type);
 
 private:

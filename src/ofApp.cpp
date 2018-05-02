@@ -3,12 +3,15 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-
 	FileParser fp = FileParser("all_stocks_5yr.csv");
-	vector<Stock*> stocks = fp.getTrainingData("AAPL", "2016-02-11", "2016-03-10");
-	true_plot_ = Plot(stocks, true, CLOSE);
+	vector<double> training_data = fp.getTrainingData("AAPL", "2016-02-11", 30, CLOSE);
+	vector<Stock*> training_stocks = fp.getTrainingStocks();
 
-	//model_ = Classifier(stocks, CLOSE, 50);
+	true_plot_ = Plot(training_stocks, true, CLOSE);
+
+	model_ = Classifier(training_data, 50);
+	model_.train();
+	model_.predict();
 }
 
 //--------------------------------------------------------------
@@ -22,14 +25,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	if (key == '+') {
-		circleResolution = ofClamp(++circleResolution, 3, 50);
-		ofSetCircleResolution(circleResolution);
-	}
-	else if (key == '-') {
-		circleResolution = ofClamp(--circleResolution, 3, 50);
-		ofSetCircleResolution(circleResolution);
-	}
+
 }
 
 //--------------------------------------------------------------

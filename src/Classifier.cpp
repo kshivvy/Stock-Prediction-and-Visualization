@@ -1,21 +1,35 @@
 #include "Classifier.h"
 
-Classifier::Classifier()
+
+Classifier::Classifier(vector<double> training_set, int num_days)
 {
+	this->training_set_ = training_set;
+	this->multilayer_perceptron_classifier_ = new ofxLearnMLP;
+	this->num_days_to_predict_ = num_days;
 }
 
-Classifier::Classifier(vector<Stock*> training_set, attribute stock_attribute, int num_days)
+Classifier::Classifier()
 {
-	training_set_ = training_set;
+	multilayer_perceptron_classifier_ = NULL;
+	num_days_to_predict_ = 0;
+}
 
-	pair<double, double> max_min_of_training_set = findMaxAndMin(stock_attribute);
+void Classifier::train() {
+	cout << '\n' << "Training model..." << '\n';
+	addTrainingSamples();
+	multilayer_perceptron_classifier_->train();
+	cout << '\n' << "Finished training model!" << '\n';
+}
 
-	for (int i = 0; i < training_set.size(); i++) {
-		
+void Classifier::addTrainingSamples() {
+	pair<double, double> max_min_of_training_set = findMaxAndMin();
+
+	for (int i = 0; i < training_set_.size(); i++) {
+
 		double x = i;
-		double y = training_set[i]->getAttribute(stock_attribute);
+		double y = training_set_[i];
 
-		x = normalize(training_set_.size() + num_days - 1, 0, i, training_set.size() + num_days);
+		x = normalize(training_set_.size() + num_days_to_predict_ - 1, 0, i, training_set_.size() + num_days_to_predict_);
 		y = normalize(max_min_of_training_set.first, max_min_of_training_set.second, y, training_set_.size());
 
 		x = ofClamp(x, 0, 1);
@@ -24,62 +38,33 @@ Classifier::Classifier(vector<Stock*> training_set, attribute stock_attribute, i
 		vector<double> sample;
 		sample.push_back(x);
 
-		if (x < 0 || x > 1 || y < 0 || x > 1) {
-			cout << "Normalization is wrong." << '\n';
-			cout << "(sample, label): (" << sample[0] << ", " << y << ")" << '\n';
-		}
-
-		multilayer_perceptron_classifier_.addSample(sample, y);
+		multilayer_perceptron_classifier_->addSample(sample, y);
 	}
+}
 
-	cout << '\n' << "Training model..." << '\n';
-	multilayer_perceptron_classifier_.train();
-	cout <<  '\n' <<"Finished training model!" << '\n';
+void Classifier::predict() {
 
-	cout << "Predicting" << '\n';
-
-	for (int i = training_set_.size(); i < training_set_.size() + num_days; i++) {
+	for (int i = training_set_.size(); i < training_set_.size() + num_days_to_predict_; i++) {
 		vector<double> sample;
 
-		double normalized_index = normalize(training_set_.size() + num_days - 1, 0, i, training_set_.size() + num_days);
+		double normalized_index = normalize(training_set_.size() + num_days_to_predict_ - 1, 0, i, training_set_.size() + num_days_to_predict_);
 		sample.push_back(normalized_index);
-
-		//cout << "Normalized sample value, i: " << sample[0] << ", " << i << '\n';
 
 		for (int i = 0; i < sample.size(); i++) {
 			cout << sample[i] << " " << i << '\n';
 		}
 
-		double prediction = multilayer_perceptron_classifier_.predict(sample);
-		//cout << "Predicted closing price: " << prediction << '\n';
+		double prediction = multilayer_perceptron_classifier_->predict(sample);
+		predicted_attributes_.push_back(prediction);
 	}
 }
 
-void Classifier::predict(int num_days) {
-	
-	for (int i = training_set_.size(); i < training_set_.size() + num_days; i++) {
-		vector<double> sample;
-
-		double normalized_index = normalize(training_set_.size() + num_days - 1, 0, i, training_set_.size() + num_days);
-		sample.push_back(normalized_index);
-		
-		cout << "Normalized sample value, i: " << sample[0] << ", " << i << '\n';
-
-		for (int i = 0; i < sample.size(); i++) {
-			cout << sample[i] << " " << i << '\n';
-		}
-
-		double prediction = multilayer_perceptron_classifier_.predict(sample);
-		cout << "Predicted closing price: " << prediction << '\n';
-	}
-}
-
-pair<double, double> Classifier::findMaxAndMin(attribute stock_attribute) {
+pair<double, double> Classifier::findMaxAndMin() {
 	double min = 0;
 	double max = 0;
 	
 	for (int i = 0; i < training_set_.size(); i++) {
-		double current_attribute = training_set_[i]->getAttribute(stock_attribute);
+		double current_attribute = training_set_[i];
 		if (min > current_attribute) {
 			min = current_attribute;
 		}
@@ -105,4 +90,5 @@ double Classifier::normalize(double max, double min, double data_point, int data
 
 Classifier::~Classifier()
 {
+	delete multilayer_perceptron_classifier_;
 }

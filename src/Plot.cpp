@@ -5,12 +5,7 @@ Plot::Plot(vector<Stock*> data, bool is_predicted, attribute data_type) {
 	this->is_predicted_ = is_predicted;
 
 	generatePoints(data_type);
-	plot_.setPoints(points_);
 	labelPlot(data_type);
-}
-
-ofxGPlot Plot::getPlot() {
-	return plot_;
 }
 
 void Plot::generatePoints(attribute data_type) {
@@ -24,7 +19,7 @@ void Plot::labelPlot(attribute data_type) {
 	//Generate common label text
 	string x_axis_label = "Days Since " + stocks_[0]->getDate();
 	string y_axis_label = "";
-	string title_label = stocks_[0]->getName() + " From: " + stocks_[0]->getDate() + " to " + stocks_[stocks_.size() - 1]->getDate();
+	string title_label = stocks_.size() - 2 + "Days Since" + stocks_[0]->getName() + " From: " + stocks_[0]->getDate();
 
 	//Append stock attribute to labels
 	switch (data_type) {
@@ -109,22 +104,23 @@ void Plot::drawPlot() {
 	point_color = ofColor(255, 0, 0);
 
 	//Draw points and labels
-	//int circleResolution = 22;
-	//ofSetCircleResolution(circleResolution);
-	plot_.setPointSize(10);
+	int circleResolution = 22;
+	ofSetCircleResolution(circleResolution);
+	plot_.setPoints(points_);
+	plot_.setPointSize(5);
 	plot_.drawPoints(point_color);
 	plot_.drawLabels();
 
 	//Set number of ticks
-	plot_.setHorizontalAxesNTicks(stocks_.size() / 1);
+	plot_.setHorizontalAxesNTicks(stocks_.size() / 5);
 	plot_.setVerticalAxesNTicks(stocks_.size() / 5);
 
 	//End plot drawing
 	plot_.endDraw();
 
 	// Activate panning and zooming
-	plot_.activatePanning();
-	plot_.activateZooming(1.1, OF_MOUSE_BUTTON_LEFT, OF_MOUSE_BUTTON_LEFT);
+	//plot_.activatePanning();
+	//plot_.activateZooming(1.1, OF_MOUSE_BUTTON_LEFT, OF_MOUSE_BUTTON_LEFT);
 }
 
 Plot::~Plot()

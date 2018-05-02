@@ -32,31 +32,27 @@ FileParser::FileParser(string file_name)
 /** 
 * Filters the stock dataset by name, start and end date, returning the subset of stocks in the date range (inclusive).
 */
-vector<Stock*> FileParser::getTrainingData(string stock_name, string start_date, string end_date) {
-	vector<Stock*> result;
-	bool inDateRange = false;
+vector<double> FileParser::getTrainingData(string stock_name, string start_date, int num_days, attribute stock_attribute) {
+	vector<double> training_data;
 
-	for (Stock* stock : data_) {
-		if (stock->getName() == stock_name) {
-
-			if (stock->getDate() == start_date) {
-				inDateRange = true;
-			} else if (stock->getDate() == end_date) {
-				result.push_back(stock);
-				inDateRange = false;
+	for (int i = 0; i < data_.size(); i++) {
+		if (data_[i]->getName() == stock_name && data_[i]->getDate() == start_date) {
+			for (int j = 0; j < num_days; j++) {
+				if (data_[i]->getName() != stock_name) {
+					break;
+				}
+				training_stocks_.push_back(data_[i]);
+				training_data.push_back(data_[i]->getAttribute(stock_attribute));
+				i++;
 			}
-
-			if (inDateRange) {
-				result.push_back(stock);
-			}
+			break;
 		}
 	}
 
-	return result;
+	return training_data;
 }
-
-vector<Stock*> FileParser::getClassifyingData(string stock_name, string end_date, int num_days_to_predict) {
-	return vector<Stock*>();
+vector<Stock*> FileParser::getTrainingStocks() {
+	return training_stocks_;
 }
 
 FileParser::~FileParser()
