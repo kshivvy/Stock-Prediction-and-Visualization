@@ -2,7 +2,8 @@
 
 This project reads a .csv file with 5 years of historical data, from Feb 2013 - Feb 2018. It allows the user to specify
 a stock, starting date, number of training and prediction points, and stock attribute (open price, closing price, etc.),
-and creates a multilayer perceptron network. it then trains this network, and predicts the true value of the stock attribute.
+and creates a multilayer perceptron network. It then trains this network, and predicts the true value of the stock attribute,
+displaying the results in an interactive graph.
 
 ![alt-text](https://github.com/uiuc-sp18-cs126/final-project-kshivvy/blob/master/SampleStockOutput.JPG)
 
@@ -24,6 +25,8 @@ Threaded applications in the ofxLearn application may not find required windows.
 machines, so comment out these lines in the ofxLearn.cpp file.
 
 User input through command line args must be formatted as: Name Starting Date (mm-dd-yyyy) | Number Of Training Points (Suggested 10 - 1000) | Number of Prediction Points | Stock Attribute To Predict (CLOSE, OPEN, VOLUME, HIGH, LOW).
+
+Contact kshivam2@illinios.edu with installation issues.
 
 ## Built With
 This code was built and tested on VisualStudio 2017 with a Windows 8.1 SDK, on a Lenovo Flex 5. Other builds on other laptops such as XCode on a Mac may result in undefined behavior. 
