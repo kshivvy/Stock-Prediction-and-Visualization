@@ -26,6 +26,8 @@ machines, so comment out these lines in the ofxLearn.cpp file.
 
 User input through command line args must be formatted as: Name Starting Date (mm-dd-yyyy) | Number Of Training Points (Suggested 10 - 1000) | Number of Prediction Points | Stock Attribute To Predict (CLOSE, OPEN, VOLUME, HIGH, LOW).
 
+For best accuracy, keep the magnitude of the training and prediction points relatively the same.
+
 Contact kshivam2@illinios.edu with installation issues.
 
 ## Built With
