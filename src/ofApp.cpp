@@ -40,10 +40,11 @@ void ofApp::run() {
 
 	//Catches faulty command line inputs.
 	try {
+		
 		file_parser_->filterStocks(name_, start_date_, num_training_points_, num_predition_points_, predicted_attribute_);
 
+		//Creates and trains model, then uses it for prediction
 		vector<double> training_data = file_parser_->getTrainingData();
-
 		model_ = new Classifier(training_data, num_predition_points_);
 		model_->train();
 		model_->predict();
@@ -51,6 +52,7 @@ void ofApp::run() {
 		vector<Stock*> true_stocks = file_parser_->getTrueFutureStocks();
 		vector<double> predicted_data = model_->getPrediction();
 
+		//Creates plots
 		true_plot_ = new Plot(true_stocks, predicted_attribute_);
 		predicted_plot_ = new Plot(predicted_data, predicted_attribute_, name_);
 	}
