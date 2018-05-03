@@ -126,4 +126,7 @@
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DEVELOPMENT.md" />
+  </ItemGroup>
 </Project>

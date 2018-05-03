@@ -31,6 +31,9 @@ display of predicted and actual stock prices to show up. Added command line func
 or another GUI library was not feasible given the time constraint. Playing with input parameters allowed me to identify several interesting demos
 to show in my final presentation.
 
+All testing was done through personal use incrementally running the project, which made it difficult to implement automated testing that tested anything
+signifanct other than getters and setters. 
+
 ##Notes
 This project has a total recorded development time of ~35 hours.
 

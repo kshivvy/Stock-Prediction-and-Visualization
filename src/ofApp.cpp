@@ -37,19 +37,28 @@ void ofApp::setup() {
 * Parses the .csv file, trains and predicts the neural network model, and initializes the plots.
 */
 void ofApp::run() {
-	file_parser_->filterStocks(name_, start_date_, num_training_points_, num_predition_points_, predicted_attribute_);
 
-	vector<double> training_data = file_parser_->getTrainingData();
+	//Catches faulty command line inputs.
+	try {
+		file_parser_->filterStocks(name_, start_date_, num_training_points_, num_predition_points_, predicted_attribute_);
 
-	model_ = new Classifier(training_data, num_predition_points_);
-	model_->train();
-	model_->predict();
+		vector<double> training_data = file_parser_->getTrainingData();
 
-	vector<Stock*> true_stocks = file_parser_->getTrueFutureStocks();
-	vector<double> predicted_data = model_->getPrediction();
+		model_ = new Classifier(training_data, num_predition_points_);
+		model_->train();
+		model_->predict();
 
-	true_plot_ = new Plot(true_stocks, predicted_attribute_);
-	predicted_plot_ = new Plot(predicted_data, predicted_attribute_, name_);
+		vector<Stock*> true_stocks = file_parser_->getTrueFutureStocks();
+		vector<double> predicted_data = model_->getPrediction();
+
+		true_plot_ = new Plot(true_stocks, predicted_attribute_);
+		predicted_plot_ = new Plot(predicted_data, predicted_attribute_, name_);
+	}
+	catch (...) {
+		cout << "[ERROR] User input was not in the appropriate format. Please input: " <<
+			"Name | Starting Date (mm-dd-yyyy) | Number Of Training Points (Suggested 10 - 1000)  |" <<
+			"Number of Prediction Points | Stock Attribute To Predict (CLOSE, OPEN, VOLUME, HIGH, LOW).";
+	}
 }
 
 /**

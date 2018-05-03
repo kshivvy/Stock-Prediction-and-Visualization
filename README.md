@@ -23,9 +23,10 @@ Open and run the solution in visual studio.
 Threaded applications in the ofxLearn application may not find required windows.h files on Windows
 machines, so comment out these lines in the ofxLearn.cpp file.
 
+User input through command line args must be formatted as: Name Starting Date (mm-dd-yyyy) | Number Of Training Points (Suggested 10 - 1000) | Number of Prediction Points | Stock Attribute To Predict (CLOSE, OPEN, VOLUME, HIGH, LOW).
+
 ## Built With
-This code was built and tested on VisualStudio 2017 with a Windows 8.1 SDK, on a Lenovo Flex 5. Other builds on other laptops
-such as XCode on Macs may result in undefined behavior. 
+This code was built and tested on VisualStudio 2017 with a Windows 8.1 SDK, on a Lenovo Flex 5. Other builds on other laptops such as XCode on a Mac may result in undefined behavior. 
 
 Libraries:
 
