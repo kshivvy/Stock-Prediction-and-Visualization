@@ -120,7 +120,7 @@ void Plot::drawPlot() {
 	int circleResolution = 22;
 	ofSetCircleResolution(circleResolution);
 	plot_->setPoints(points_);
-	plot_->setPointSize(5);
+	plot_->setPointSize(10);
 	plot_->drawPoints(point_color);
 	plot_->drawLabels();
 
