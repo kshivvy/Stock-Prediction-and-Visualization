@@ -17,6 +17,7 @@ public:
 	void drawPlot();
 	void generatePoints(attribute data_type);
 	void labelPlot(attribute data_type);
+	void setYAxisLimits(int min, int max);
 
 private:
 	bool is_predicted_;

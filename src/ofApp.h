@@ -13,6 +13,7 @@ public:
 	void setup();
 	void draw();
 	void run();
+
 	vector<string> arguments;
 
 private: 

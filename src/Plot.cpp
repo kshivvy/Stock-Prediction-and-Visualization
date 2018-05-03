@@ -93,6 +93,10 @@ void Plot::labelPlot(attribute data_type) {
 	plot_->setXLim(0, stocks_.size()-1);
 }
 
+void setYAxisLimits(int min, int max) {
+
+}
+
 void Plot::drawPlot() {
 
 	//Draw graph's skeleton
@@ -132,8 +136,8 @@ void Plot::drawPlot() {
 	plot_->endDraw();
 
 	// Activate panning and zooming
-	//plot_.activatePanning();
-	//plot_.activateZooming(1.1, OF_MOUSE_BUTTON_LEFT, OF_MOUSE_BUTTON_LEFT);
+	plot_->activatePanning();
+	plot_->activateZooming(1.1, OF_MOUSE_BUTTON_LEFT, OF_MOUSE_BUTTON_LEFT);
 }
 
 Plot::~Plot()
