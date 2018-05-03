@@ -24,10 +24,8 @@ Classifier::Classifier()
 * Calls ofxLearn train() method after adding training samples.
 */
 void Classifier::train() {
-	cout << '\n' << "Training model..." << '\n';
 	addTrainingSamples();
 	multilayer_perceptron_classifier_->train();
-	cout << '\n' << "Finished training model!" << '\n';
 }
 
 /** 
@@ -90,6 +88,7 @@ void Classifier::findMaxAndMinOfTrainingSet() {
 		}
 	}
 
+	//Multiplies max by two to aid with normalization of samples beyond trainingset.
 	max_of_training_set_ *= 2;
 }
 

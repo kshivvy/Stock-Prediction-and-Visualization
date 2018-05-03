@@ -1,5 +1,9 @@
 #include "Stock.h"
 
+/**
+* Creates a Stock object from a string taken from a row of the .csv file. Fills in 
+* attributs like name, high, low, close, etc.
+*/
 Stock::Stock(string csv_row) {
 	stringstream ss(csv_row);
 
@@ -19,6 +23,9 @@ Stock::Stock(string csv_row) {
 	name_ = columns[6];
 }
 
+/**
+* Creates a Stock object with the predicted value, and sets all other values to 0;
+*/
 Stock::Stock(string name, attribute stock_attribute, double value) {
 	this->name_ = name;
 	this->date_ = "";
@@ -59,6 +66,9 @@ string Stock::getName() {
 	return name_;
 }
 
+/**
+* Returns the stock attribute based on the passed in Enum type.
+*/
 double Stock::getAttribute(attribute stock_attribute) {
 	switch (stock_attribute) {
 	case OPEN:
@@ -82,6 +92,9 @@ double Stock::getAttribute(attribute stock_attribute) {
 	}
 }
 
+/**
+* Helper method that can print each stock object to std output.
+*/
 void Stock::print() {
 	cout << "Name: " << name_ << '\n';
 	cout << "Date: " << date_ << '\n';
@@ -92,7 +105,9 @@ void Stock::print() {
 	cout << "Volume: " << volume_ << '\n';
  }
 
-
+/**
+* Destructor
+*/
 Stock::~Stock()
 {
 }

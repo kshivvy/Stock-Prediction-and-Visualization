@@ -1,6 +1,9 @@
 #include "ofApp.h"
 
-//--------------------------------------------------------------
+/**
+* Parses all command line arguments and initializes relevant instance fields
+* defining the subset of stocks to train and predict with.
+*/
 void ofApp::setup() {
 
 
@@ -29,6 +32,9 @@ void ofApp::setup() {
 	draw();
 }
 
+/**
+* Parses the .csv file, trains and predicts the neural network model, and initializes the plots.
+*/
 void ofApp::run() {
 	file_parser_->filterStocks(name_, start_date_, num_training_points_, num_predition_points_, predicted_attribute_);
 
@@ -45,7 +51,9 @@ void ofApp::run() {
 	predicted_plot_ = new Plot(predicted_data, predicted_attribute_, name_);
 }
 
-//--------------------------------------------------------------
+/**
+* Draws both the true and predicted plot.
+*/
 void ofApp::draw(){
 	ofBackground(248, 248, 255);
 	true_plot_->drawPlot();

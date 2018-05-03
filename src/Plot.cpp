@@ -1,5 +1,8 @@
 #include "Plot.h"
 
+/**
+* Creates a plot based based on the passed in stocks and the data type to plot.
+*/
 Plot::Plot(vector<Stock*> data, attribute data_type) {
 	this->stocks_ = data;
 	this->is_predicted_ = false;
@@ -9,6 +12,10 @@ Plot::Plot(vector<Stock*> data, attribute data_type) {
 	labelPlot(data_type);
 }
 
+/**
+* Creates a plot based based on the passed in predicted dataset, attribute, and stock name.
+* Creates a vector of stock pointers in order to utilize DRY.
+*/
 Plot::Plot(vector<double> predicted_attributes, attribute data_type, string name) {
 	for (int i = 0; i < predicted_attributes.size(); i++) {
 		Stock * stock = new Stock(name, data_type, predicted_attributes[i]);
@@ -21,12 +28,26 @@ Plot::Plot(vector<double> predicted_attributes, attribute data_type, string name
 	labelPlot(data_type);
 }
 
+/**
+* Default constructor.
+*/
+Plot::Plot()
+{
+	plot_ = NULL;
+}
+
+/**
+* Adds the specific stock attibute for the entire dataset to a vector of ofxPoint objects.
+*/
 void Plot::generatePoints(attribute data_type) {
 	for (int i = 0; i < stocks_.size(); i++) {
 		points_.emplace_back(i, stocks_[i]->getAttribute(data_type));
 	}
 }
 
+/**
+* Creates the x-axis, y-axis, and title labels for each graph.
+*/
 void Plot::labelPlot(attribute data_type) {
 	
 	//Generate common label text
@@ -93,10 +114,9 @@ void Plot::labelPlot(attribute data_type) {
 	plot_->setXLim(0, stocks_.size()-1);
 }
 
-void setYAxisLimits(int min, int max) {
-
-}
-
+/**
+* Draws the graph, optimized for fullscreen view.
+*/
 void Plot::drawPlot() {
 
 	//Draw graph's skeleton
@@ -140,14 +160,15 @@ void Plot::drawPlot() {
 	plot_->activateZooming(1.1, OF_MOUSE_BUTTON_LEFT, OF_MOUSE_BUTTON_LEFT);
 }
 
+/**
+* Destructor that deallocates heap memory taken by the Stock pointer dataset.
+*/
 Plot::~Plot()
 {
 	for (Stock* stock : stocks_) {
 		delete stock;
 	}
+	delete plot_;
 }
 
-Plot::Plot() 
-{
 
-}
