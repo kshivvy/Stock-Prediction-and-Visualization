@@ -58,6 +58,15 @@ void ofApp::run() {
 		cout << "[ERROR] User input was not in the appropriate format. Please input: " <<
 			"Name | Starting Date (mm-dd-yyyy) | Number Of Training Points (Suggested 10 - 1000)  |" <<
 			"Number of Prediction Points | Stock Attribute To Predict (CLOSE, OPEN, VOLUME, HIGH, LOW).";
+
+		cout << "RUNNING DEFAULT EXAMPLE." << '\n';
+
+		name_ = "AAPL";
+		start_date_ = "2013-02-11";
+		num_training_points_ = 10;
+		num_predition_points_ = 10;
+		predicted_attribute_ = CLOSE;
+		run();
 	}
 }
 
