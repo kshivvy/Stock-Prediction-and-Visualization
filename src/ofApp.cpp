@@ -6,6 +6,7 @@
 */
 void ofApp::setup() {
 
+	ofLog(OF_LOG_VERBOSE);
 
 	file_parser_ = new FileParser("all_stocks_5yr.csv");
 
