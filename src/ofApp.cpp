@@ -3,15 +3,22 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-	FileParser fp = FileParser("all_stocks_5yr.csv");
-	vector<double> training_data = fp.getTrainingData("AAPL", "2016-02-11", 30, CLOSE);
-	vector<Stock*> training_stocks = fp.getTrainingStocks();
 
-	true_plot_ = Plot(training_stocks, true, CLOSE);
+	file_parser_ = new FileParser("all_stocks_5yr.csv");
 
-	model_ = Classifier(training_data, 50);
-	model_.train();
-	model_.predict();
+	file_parser_->filterStocks("AAL", "2013-02-11", 400, 25, CLOSE);
+
+	vector<double> training_data = file_parser_->getTrainingData();
+
+	model_ = new Classifier(training_data, 50);
+	model_->train();
+	model_->predict();
+
+	vector<Stock*> true_stocks = file_parser_->getTrueFutureStocks();
+	vector<double> predicted_attributes = model_->getPrediction();
+
+	true_plot_ = new Plot(true_stocks, CLOSE);	
+	predicted_plot_ = new Plot(predicted_attributes, CLOSE, "AAL");
 }
 
 //--------------------------------------------------------------
@@ -20,7 +27,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	true_plot_.drawPlot();
+	ofBackground(161, 239, 255, .6);
+	true_plot_->drawPlot();
+	predicted_plot_->drawPlot();
 }
 
 //--------------------------------------------------------------

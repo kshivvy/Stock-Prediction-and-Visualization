@@ -32,27 +32,42 @@ FileParser::FileParser(string file_name)
 /** 
 * Filters the stock dataset by name, start and end date, returning the subset of stocks in the date range (inclusive).
 */
-vector<double> FileParser::getTrainingData(string stock_name, string start_date, int num_days, attribute stock_attribute) {
-	vector<double> training_data;
-
-	for (int i = 0; i < data_.size(); i++) {
+void FileParser::filterStocks(string stock_name, string start_date, int num_training_days, int num_prediction_days, attribute stock_attribute) {
+	
+	for (unsigned int i = 0; i < data_.size(); i++) {
 		if (data_[i]->getName() == stock_name && data_[i]->getDate() == start_date) {
-			for (int j = 0; j < num_days; j++) {
+			
+			for (int j = 0; j < num_training_days + num_prediction_days; j++) {
+
 				if (data_[i]->getName() != stock_name) {
 					break;
 				}
-				training_stocks_.push_back(data_[i]);
-				training_data.push_back(data_[i]->getAttribute(stock_attribute));
+
+				if (j < num_training_days) {
+					training_stocks_.push_back(data_[i]);
+					training_data_.push_back(data_[i]->getAttribute(stock_attribute));
+				}
+				else {
+					true_future_stocks_.push_back(data_[i]);
+				}
 				i++;
 			}
 			break;
+		
 		}
 	}
-
-	return training_data;
 }
+
+vector<double> FileParser::getTrainingData() {
+	return training_data_;
+}
+
 vector<Stock*> FileParser::getTrainingStocks() {
 	return training_stocks_;
+}
+
+vector<Stock*> FileParser::getTrueFutureStocks() {
+	return true_future_stocks_;
 }
 
 FileParser::~FileParser()

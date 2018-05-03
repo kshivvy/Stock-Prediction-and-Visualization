@@ -1,9 +1,22 @@
 #include "Plot.h"
 
-Plot::Plot(vector<Stock*> data, bool is_predicted, attribute data_type) {
+Plot::Plot(vector<Stock*> data, attribute data_type) {
 	this->stocks_ = data;
-	this->is_predicted_ = is_predicted;
+	this->is_predicted_ = false;
+	plot_ = new ofxGPlot;
 
+	generatePoints(data_type);
+	labelPlot(data_type);
+}
+
+Plot::Plot(vector<double> predicted_attributes, attribute data_type, string name) {
+	for (int i = 0; i < predicted_attributes.size(); i++) {
+		Stock * stock = new Stock(name, data_type, predicted_attributes[i]);
+		stocks_.push_back(stock);
+	}
+
+	plot_ = new ofxGPlot;
+	this->is_predicted_ = true;
 	generatePoints(data_type);
 	labelPlot(data_type);
 }
@@ -17,9 +30,12 @@ void Plot::generatePoints(attribute data_type) {
 void Plot::labelPlot(attribute data_type) {
 	
 	//Generate common label text
-	string x_axis_label = "Days Since " + stocks_[0]->getDate();
+	string x_axis_label = to_string(stocks_.size()) + " Days Since " + stocks_[0]->getDate();
+	if (is_predicted_) {
+		x_axis_label = to_string(stocks_.size()) + +" Predicted Days";
+	}
 	string y_axis_label = "";
-	string title_label = stocks_.size() - 2 + "Days Since" + stocks_[0]->getName() + " From: " + stocks_[0]->getDate();
+	string title_label  = stocks_[0]->getName();
 
 	//Append stock attribute to labels
 	switch (data_type) {
@@ -64,59 +80,56 @@ void Plot::labelPlot(attribute data_type) {
 	}
 
 	//Set font properties
-	plot_.setAllFontProperties("Arial", ofColor(0, 0, 0), 20);
-	plot_.getYAxis().setFontSize(13);
-	plot_.getXAxis().setFontSize(13);
+	plot_->setAllFontProperties("Arial", ofColor(0, 0, 0), 20);
+	plot_->getYAxis().setFontSize(13);
+	plot_->getXAxis().setFontSize(13);
 	
 	//Set labels
-	plot_.setTitleText(title_label);
-	plot_.getYAxis().setAxisLabelText(y_axis_label);
-	plot_.getXAxis().setAxisLabelText(x_axis_label);
+	plot_->setTitleText(title_label);
+	plot_->getYAxis().setAxisLabelText(y_axis_label);
+	plot_->getXAxis().setAxisLabelText(x_axis_label);
 
 	//Set label limits
-	plot_.setXLim(0, stocks_.size()-1);
+	plot_->setXLim(0, stocks_.size()-1);
 }
 
 void Plot::drawPlot() {
 
 	//Draw graph's skeleton
-	ofBackground(255);
-	plot_.setOuterDim(ofGetWidth() / 2, ofGetHeight() / 2);
-	plot_.beginDraw();
-	plot_.drawBox();
-	plot_.drawXAxis();
-	plot_.drawYAxis();
-	plot_.drawTitle();
+	plot_->setOuterDim(ofGetWidth() / 2, ofGetHeight() / 2);
+	plot_->beginDraw();
+	plot_->drawBox();
+	plot_->drawXAxis();
+	plot_->drawYAxis();
+	plot_->drawTitle();
 
-	plot_.setLineWidth(3);
-	plot_.drawLines();
+	plot_->setLineWidth(3);
+	plot_->drawLines();
 
 	ofColor point_color = ofColor(255, 218, 54);
 
 	//Handle position and point color based on plot location
 	if (is_predicted_) {
-		point_color = ofColor(161, 239, 255);
-		plot_.setPos(ofGetWidth() / 2, 0);
+		point_color = ofColor(0, 81, 186);
+		plot_->setPos(ofGetWidth() / 2, 0);
 	} else {
-		plot_.setPos(0, 0);
+		plot_->setPos(0, 0);
 	}
-
-	point_color = ofColor(255, 0, 0);
 
 	//Draw points and labels
 	int circleResolution = 22;
 	ofSetCircleResolution(circleResolution);
-	plot_.setPoints(points_);
-	plot_.setPointSize(5);
-	plot_.drawPoints(point_color);
-	plot_.drawLabels();
+	plot_->setPoints(points_);
+	plot_->setPointSize(5);
+	plot_->drawPoints(point_color);
+	plot_->drawLabels();
 
 	//Set number of ticks
-	plot_.setHorizontalAxesNTicks(stocks_.size() / 5);
-	plot_.setVerticalAxesNTicks(stocks_.size() / 5);
+	plot_->setHorizontalAxesNTicks(stocks_.size() / 5);
+	plot_->setVerticalAxesNTicks(stocks_.size() / 5);
 
 	//End plot drawing
-	plot_.endDraw();
+	plot_->endDraw();
 
 	// Activate panning and zooming
 	//plot_.activatePanning();
@@ -125,6 +138,9 @@ void Plot::drawPlot() {
 
 Plot::~Plot()
 {
+	for (Stock* stock : stocks_) {
+		delete stock;
+	}
 }
 
 Plot::Plot() 

@@ -15,12 +15,15 @@ public:
 	FileParser(string file_name);
 	~FileParser();
 
-	vector<double> getTrainingData(string stock_name, string start_date, int num_days, attribute stock_attribute);
+	void filterStocks(string stock_name, string start_date, int num_training_days, int num_prediction_days, attribute stock_attribute);
 	vector<Stock*> getTrainingStocks();
-	vector<Stock*> getStockByName(string stock_name);
+	vector<Stock*> getTrueFutureStocks();
+	vector<double> getTrainingData();
 
 private:
 	vector<Stock*> data_;
 	vector<Stock*> training_stocks_;
+	vector<double> training_data_;
+	vector<Stock*> true_future_stocks_;
 };
 

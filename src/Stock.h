@@ -13,7 +13,7 @@ class Stock
 {
 public:
 	Stock(string csv_row);
-	//Stock(attribute stock_attribute, vector<double> predicted_attributes, string name, )
+	Stock(string name, attribute stock_attribute, double value);
 	~Stock();
 	void print();
 	string getDate();

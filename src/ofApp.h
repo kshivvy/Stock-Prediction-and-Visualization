@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxLearn.h"
-#include "ofxGrafica.h"
 #include "FileParser.h"
 #include "Plot.h"
 #include "Classifier.h"
@@ -25,14 +23,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
-		ofxLearnSVM classifier;
-		vector<vector<double> > trainingExamples;
-		vector<int> trainingLabels;
 
-		int circleResolution;
 private: 
-	Plot true_plot_;
-	Plot predicted_plot_;
-	Classifier model_;
+	Plot * true_plot_;
+	Plot * predicted_plot_;
+	Classifier * model_;
+	FileParser * file_parser_;
 };
