@@ -96,7 +96,7 @@ void Plot::labelPlot(attribute data_type) {
 void Plot::drawPlot() {
 
 	//Draw graph's skeleton
-	plot_->setOuterDim(ofGetWidth() / 2, ofGetHeight() / 2);
+	plot_->setOuterDim(ofGetWidth() / 2, ofGetHeight());
 	plot_->beginDraw();
 	plot_->drawBox();
 	plot_->drawXAxis();

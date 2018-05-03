@@ -4,85 +4,33 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
 
+
 	file_parser_ = new FileParser("all_stocks_5yr.csv");
 
-	file_parser_->filterStocks("AAL", "2013-02-11", 400, 25, CLOSE);
+	string name = "AAPL";
+	string start_date = "2013-02-11";
+	int num_training_points = 100;
+	int num_predition_points = 10;
+	attribute predicted_attribute = CLOSE;
+
+	file_parser_->filterStocks(name, start_date, num_training_points, num_predition_points, predicted_attribute);
 
 	vector<double> training_data = file_parser_->getTrainingData();
 
-	model_ = new Classifier(training_data, 50);
+	model_ = new Classifier(training_data, num_predition_points);
 	model_->train();
 	model_->predict();
 
 	vector<Stock*> true_stocks = file_parser_->getTrueFutureStocks();
-	vector<double> predicted_attributes = model_->getPrediction();
+	vector<double> predicted_data = model_->getPrediction();
 
-	true_plot_ = new Plot(true_stocks, CLOSE);	
-	predicted_plot_ = new Plot(predicted_attributes, CLOSE, "AAL");
-}
-
-//--------------------------------------------------------------
-void ofApp::update(){
+	true_plot_ = new Plot(true_stocks, predicted_attribute);	
+	predicted_plot_ = new Plot(predicted_data, predicted_attribute, name);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofBackground(161, 239, 255, .6);
+	ofBackground(248, 248, 255);
 	true_plot_->drawPlot();
 	predicted_plot_->drawPlot();
-}
-
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
 }

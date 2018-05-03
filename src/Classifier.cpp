@@ -49,10 +49,6 @@ void Classifier::predict() {
 		double normalized_index = normalize(training_set_.size() + num_days_to_predict_ - 1, 0, i, training_set_.size() + num_days_to_predict_);
 		sample.push_back(normalized_index);
 
-		for (int i = 0; i < sample.size(); i++) {
-			cout << sample[i] << " " << i << '\n';
-		}
-
 		double prediction = multilayer_perceptron_classifier_->predict(sample);
 		prediction = denormalize(max_of_training_set, min_of_training_set, prediction);
 		predicted_attributes_.push_back(prediction);
