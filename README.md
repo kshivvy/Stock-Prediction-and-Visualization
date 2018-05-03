@@ -4,6 +4,8 @@ This project reads a .csv file with 5 years of historical data, from Feb 2013 - 
 a stock, starting date, number of training and prediction points, and stock attribute (open price, closing price, etc.),
 and creates a multilayer perceptron network. it then trains this network, and predicts the true value of the stock attribute.
 
+![alt-text](https://github.com/uiuc-sp18-cs126/final-project-kshivvy/blob/master/SampleStockOutput.JPG)
+
 ## Getting Started
 You will need: 
 
