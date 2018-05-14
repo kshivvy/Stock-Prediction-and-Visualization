@@ -11,7 +11,7 @@ int main(int argc, char*argv[]){
 	ofApp *app = new ofApp();
 
 	if (argc < 5) {
-		app->arguments = { "AAPL", "2013-02-11", "10", "10", "CLOSE"}; //Default example
+		app->arguments = { "GOOGL", "2013-02-11", "10", "10", "CLOSE"}; //Default example
 	} else {
 		app->arguments = vector<string>(argv, argv + argc);
 	}
